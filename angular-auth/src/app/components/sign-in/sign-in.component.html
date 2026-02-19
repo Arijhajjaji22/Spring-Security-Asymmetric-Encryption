@@ -1,0 +1,119 @@
+<div class="auth-container d-flex justify-content-center align-items-center">
+  <div class="card auth-card p-4" style="max-width: 400px; width: 100%;">
+    <div class="card-body">
+
+      <!-- Title -->
+      <h2 class="card-title text-center mb-4">Sign In</h2>
+
+      <!-- Error message -->
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Login form -->
+      <form (ngSubmit)="onSubmit()">
+
+        <!-- Email field -->
+        <div class="form-group mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            [(ngModel)]="email"
+            name="email"
+            class="form-control"
+            [class.is-invalid]="submitted && !email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          />
+          <div *ngIf="submitted && !email" class="invalid-feedback">
+            Email is required
+          </div>
+        </div>
+
+        <!-- Password field -->
+     <div class="form-group mb-3 position-relative">
+  <label for="password" class="form-label">Password</label>
+
+  <input
+    [type]="showPassword ? 'text' : 'password'"
+    [(ngModel)]="password"
+    name="password"
+    class="form-control password-input"
+    [class.is-invalid]="submitted && (!password || password.length < 8)"
+    id="password"
+    placeholder="Enter your password"
+    required
+    minlength="8"
+  />
+  <i
+    class="fa toggle-password"
+    [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"
+    (click)="showPassword = !showPassword"
+  ></i>
+
+  <div *ngIf="submitted && !password" class="invalid-feedback">
+    Password is required
+  </div>
+  <div *ngIf="submitted && password && password.length < 8" class="invalid-feedback">
+    Password must be at least 8 characters
+  </div>
+</div>
+
+
+        <!-- Forgot password link -->
+        <div class="text-end mb-3">
+          <a routerLink="/forgot-password" class="small">Forgot password?</a>
+        </div>
+
+        <!-- Sign in button -->
+        <button type="submit" class="btn btn-primary w-100 mb-3" [disabled]="loading">
+          <span *ngIf="!loading">Sign In</span>
+          <span *ngIf="loading">
+            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+            Loading...
+          </span>
+        </button>
+
+        <!-- Divider -->
+        <div class="d-flex align-items-center my-3">
+          <hr class="flex-grow-1">
+          <span class="mx-2 text-muted">or</span>
+          <hr class="flex-grow-1">
+        </div>
+
+        <!-- OAuth buttons -->
+       <button
+  type="button"
+  class="btn btn-outline-danger w-100 d-flex justify-content-center align-items-center mb-2"
+  (click)="onGoogleSignIn()"
+  [disabled]="loading"
+>
+  <i class="fab fa-google me-2"></i>
+  Sign in with Google
+</button>
+
+
+       
+        <!-- Remember me checkbox -->
+     <div class="form-check mb-3">
+  <input
+    type="checkbox"
+    class="form-check-input"
+    id="rememberMe"
+    [(ngModel)]="rememberMe"
+    name="rememberMe"
+  />
+  <label class="form-check-label" for="rememberMe">Remember me</label>
+</div>
+
+
+      </form>
+
+      <!-- Register link -->
+      <p class="text-center mt-3">
+        Don't have an account? <a routerLink="/register">Register here</a>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,127 @@
+<div class="auth-container">
+  <div class="card auth-card">
+    <div class="card-body">
+      <h2 class="card-title">Sign Up</h2>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+      <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+        <!-- FIRST NAME -->
+        <div class="form-group">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" formControlName="firstName" class="form-control"
+                 [class.is-invalid]="submitted && f['firstName'].errors" id="firstName"/>
+
+          <div *ngIf="submitted && f['firstName'].errors" class="invalid-feedback">
+            <div *ngIf="f['firstName'].errors['required']">
+              First name is required
+            </div>
+            <div *ngIf="f['firstName'].errors['backendError']">
+              {{ f['firstName'].errors['backendError'] }}
+            </div>
+          </div>
+        </div>
+
+        <!-- LAST NAME -->
+        <div class="form-group">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" formControlName="lastName" class="form-control"
+                 [class.is-invalid]="submitted && f['lastName'].errors" id="lastName"/>
+
+          <div *ngIf="submitted && f['lastName'].errors" class="invalid-feedback">
+            <div *ngIf="f['lastName'].errors['required']">
+              Last name is required
+            </div>
+            <div *ngIf="f['lastName'].errors['backendError']">
+              {{ f['lastName'].errors['backendError'] }}
+            </div>
+          </div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" formControlName="email" class="form-control"
+                 [class.is-invalid]="submitted && f['email'].errors" id="email"/>
+
+          <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+            <div *ngIf="f['email'].errors['required']">Email is required</div>
+            <div *ngIf="f['email'].errors['email']">Email must be valid</div>
+            <div *ngIf="f['email'].errors['backendError']">
+              {{ f['email'].errors['backendError'] }}
+            </div>
+          </div>
+        </div>
+
+        <!-- PHONE -->
+        <div class="form-group">
+          <label for="phoneNumber" class="form-label">Phone Number</label>
+          <input type="tel" formControlName="phoneNumber" class="form-control"
+                 [class.is-invalid]="submitted && f['phoneNumber'].errors"
+                 id="phoneNumber" placeholder="+1234567890"/>
+
+          <div *ngIf="submitted && f['phoneNumber'].errors" class="invalid-feedback">
+            <div *ngIf="f['phoneNumber'].errors['required']">
+              Phone number is required
+            </div>
+            <div *ngIf="f['phoneNumber'].errors['backendError']">
+              {{ f['phoneNumber'].errors['backendError'] }}
+            </div>
+          </div>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" formControlName="password" class="form-control"
+                 [class.is-invalid]="submitted && f['password'].errors" id="password"/>
+
+          <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+            <div *ngIf="f['password'].errors['required']">
+              Password is required
+            </div>
+            <div *ngIf="f['password'].errors['minlength']">
+              Password must be at least 8 characters
+            </div>
+            <div *ngIf="f['password'].errors['backendError']">
+              {{ f['password'].errors['backendError'] }}
+            </div>
+          </div>
+        </div>
+
+        <!-- CONFIRM PASSWORD -->
+        <div class="form-group">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" formControlName="confirmPassword" class="form-control"
+                 [class.is-invalid]="submitted && f['confirmPassword'].errors"
+                 id="confirmPassword"/>
+
+          <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback">
+            <div *ngIf="f['confirmPassword'].errors['required']">
+              Confirm password is required
+            </div>
+            <div *ngIf="f['confirmPassword'].errors['backendError']">
+              {{ f['confirmPassword'].errors['backendError'] }}
+            </div>
+          </div>
+        </div>
+
+        <!-- BUTTON -->
+        <button type="submit" class="btn btn-primary" [disabled]="loading">
+          <span *ngIf="!loading">Sign Up</span>
+          <span *ngIf="loading">
+            <span class="spinner-border spinner-border-sm me-2"></span>
+            Loading...
+          </span>
+        </button>
+
+      </form>
+
+      <p class="text-center mt-3">
+        Already have an account? <a routerLink="/login">Login here</a>
+      </p>
+    </div>
+  </div>
+</div>

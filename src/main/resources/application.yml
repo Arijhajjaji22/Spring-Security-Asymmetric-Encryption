@@ -1,0 +1,41 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+
+app:
+  security:
+    disposable-email: "10min.com, mailinator.com, temp-mail.org, 10minutemail.com, guerrillamail.com, yopmail.com, temp-mail.io, throwawaymail.com, maildrop.cc, fakeinbox.com, tempmail.net, 10minutemail.net, mailnesia.com, temp-mail.com, 10minutemail.org, mailcatch.com, temp-mail.io, 10minutemail.co.za, mailinator.net, temp-mail.org, 10minutemail.co, maildrop.cc,20minutemail.com, mailnesia.com, temp-mail.net, 20minutemail.net, mailcatch.com, temp-mail.com, 20minutemail.org, mailinator.org, temp-mail.io, 20minutemail.co.za, maildrop.cc, temp-mail.org"
+    jwt:
+      access-token-expiration: 86400000
+      refresh-token-expiration: 604800000
+      
+google:
+  client:
+    id: 836034687683-n7kf94oc417n1qj3brvhc1l9hmpkadbr.apps.googleusercontent.com
+
+mail:
+    host: smtp.mailtrap.io
+    port: 2525
+    username: dacd65a382e64b
+    password: f4f9f758dc644c
+
+server:
+  port: 8081

@@ -1,0 +1,33 @@
+# version: "3.8"
+
+# services:
+#   postgres:
+#     container_name: spring_sec_asymetric
+#     image: postgres:17.5
+#     environment:
+#       POSTGRES_USER: username
+#       POSTGRES_PASSWORD: password
+#       PGDATA: /data/postgres
+#       POSTGRES_DB: spring_app_db
+#     volumes:
+#       - postgres:/data/postgres
+#     ports:
+#       - "5432:5432"
+#     restart: unless-stopped
+
+# volumes:
+#   postgres:
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
